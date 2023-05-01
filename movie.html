@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./dist/global.css" />
+    </head>
+    <body>
+        <header class="shadow-md">
+            <div
+                class="flex container mx-auto px-5 py-3 items-center justify-between"
+            >
+                <span>Logo</span>
+                <ul class="hidden lg:flex gap-[2rem] items-center">
+                    <li class="cursor-pointer hover:text-[1.4rem]">Home</li>
+                    <li class="cursor-pointer hover:text-[1.4rem]">Movies</li>
+                    <li class="cursor-pointer hover:text-[1.4rem]">Series</li>
+                    <li class="cursor-pointer hover:text-[1.4rem]">About</li>
+                </ul>
+
+                <div
+                    id="menu-icon"
+                    class="w-[20px] lg:hidden flex flex-col gap-[2px] cursor-pointer"
+                >
+                    <span
+                        class="w-full h-[5px] rounded-[5px] bg-purple-800"
+                    ></span>
+                    <span
+                        class="w-full h-[5px] rounded-[5px] bg-purple-800"
+                    ></span>
+                    <span
+                        class="w-full h-[5px] rounded-[5px] bg-purple-800"
+                    ></span>
+                </div>
+
+                <div
+                    id="sm-menu-content"
+                    class="fixed w-[50%] backdrop-blur-sm h-screen top-0 left-[-100%] duration-700 bg-[#03344d5e]"
+                >
+                    <ul
+                        class="flex flex-col gap-[2rem] items-center pt-9 font-bold"
+                    >
+                        <li class="cursor-pointer hover:font-[1.4rem]">Home</li>
+                        <li class="cursor-pointer hover:font-[1.4rem]">
+                            Movies
+                        </li>
+                        <li class="cursor-pointer hover:font-[1.4rem]">
+                            Series
+                        </li>
+                        <li class="cursor-pointer hover:font-[1.4rem]">
+                            About
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-5 py-8">
+            <div id="details" class="flex items-center gap-[3rem] flex-wrap">
+                <div class="w-full h-full grid place-items-center" id="loader">
+                    <img src="./assets/movieloader.gif" alt="" />
+                </div>
+            </div>
+        </main>
+
+        <script>
+            const movieId = window.location.search.split("=")[1].split("?")[0];
+            const mediaType = window.location.search.split("=")[2];
+            const API_KEY = "c64217bf43660888b9007fe20443481b";
+            const url = (newQuery) =>
+                `https://api.themoviedb.org/3/${newQuery}?api_key=${API_KEY}&language=en-US`;
+
+            // DOM Elements
+
+            const details = document.querySelector("#details");
+            const loader = document.querySelector("#loader");
+
+            const fetchMovie = async (url) => {
+                try {
+                    const daniel = await fetch(url);
+                    const data = await daniel.json();
+
+                    console.log(data);
+                    if (data) {
+                        loader.style.display = "none";
+                        details.innerHTML = `
+                    <img class="mx-auto" src="https://image.tmdb.org/t/p/w500/${
+                        data.poster_path
+                    }" alt="" />
+                    <div class="flex flex-col items-center "> 
+                      <h1 class="font-bold text-[2rem] text-purple-800"> ${
+                          data.title || data.name
+                      } </h1>  
+                      
+                      <p class="text-[1.2rem] text-gray-500"> ${
+                          data.overview
+                      } </p>
+                    </div>
+                    `;
+                    }
+                } catch (err) {}
+            };
+
+            mediaType == "tv"
+                ? fetchMovie(url(`movie/${movieId}`))
+                : fetchMovie(url(`tv/${movieId}`));
+        </script>
+    </body>
+</html>

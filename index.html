@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./dist/global.css" />
+    </head>
+    <body>
+        <header class="shadow-md">
+            <div
+                class="flex container mx-auto px-5 py-3 items-center justify-between"
+            >
+                <span>Logo</span>
+                <ul class="hidden lg:flex gap-[2rem] items-center">
+                    <li class="cursor-pointer hover:text-[1.4rem]">Home</li>
+                    <li class="cursor-pointer hover:text-[1.4rem]">Movies</li>
+                    <li class="cursor-pointer hover:text-[1.4rem]">Series</li>
+                    <li class="cursor-pointer hover:text-[1.4rem]">About</li>
+                </ul>
+
+                <div
+                    id="menu-icon"
+                    class="w-[20px] lg:hidden flex flex-col gap-[2px] cursor-pointer"
+                >
+                    <span
+                        class="w-full h-[5px] rounded-[5px] bg-purple-800"
+                    ></span>
+                    <span
+                        class="w-full h-[5px] rounded-[5px] bg-purple-800"
+                    ></span>
+                    <span
+                        class="w-full h-[5px] rounded-[5px] bg-purple-800"
+                    ></span>
+                </div>
+
+                <div
+                    id="sm-menu-content"
+                    class="fixed w-[50%] backdrop-blur-sm h-screen top-0 left-[-100%] duration-700 bg-[#03344d5e]"
+                >
+                    <ul
+                        class="flex flex-col gap-[2rem] items-center pt-9 font-bold"
+                    >
+                        <li class="cursor-pointer hover:font-[1.4rem]">Home</li>
+                        <li class="cursor-pointer hover:font-[1.4rem]">
+                            Movies
+                        </li>
+                        <li class="cursor-pointer hover:font-[1.4rem]">
+                            Series
+                        </li>
+                        <li class="cursor-pointer hover:font-[1.4rem]">
+                            About
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="mt-5">
+            <!-- ---------HERO SECTION ----------- -->
+            <div
+                class="container mx-auto px-5 flex justify-between items-center flex-wrap lg:flex-nowrap"
+            >
+                <img src="./assets/movieHero.gif" alt="" />
+
+                <div
+                    class="flex flex-col gap-6 lg:items-start flex-wraps-start items-center"
+                >
+                    <h1 class="text-[2rem] text-purple-950 font-extrabold">
+                        Danny Movie
+                    </h1>
+                    <p class="text-[1.3rem] text-gray-800">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Eveniet voluptates fugiat aperiam eum in mollitia
+                        provident tempore optio alias hic consequatur
+                        voluptatibus enim culpa reiciendis praesentium molestias
+                        modi, quas ab.
+                    </p>
+
+                    <button
+                        class="px-8 py-4 rounded-[12px] bg-purple-950 text-gray-200 font-bold"
+                    >
+                        Get Started
+                    </button>
+                </div>
+            </div>
+
+            <!-- ---------MOVIE SECTION ----------- -->
+            <div class="bg-purple-900 mt-8">
+                <div class="container mx-auto px-5 py-12">
+                    <h2 class="text-[1.6rem] font-bold text-gray-200">
+                        Latest Movies
+                    </h2>
+
+                    <div
+                        id="movie"
+                        class="grid grid-cols-2 gap-6 mt-6 lg:grid-cols-4"
+                    ></div>
+                </div>
+            </div>
+        </main>
+
+        <script src="./index.js"></script>
+    </body>
+</html>
